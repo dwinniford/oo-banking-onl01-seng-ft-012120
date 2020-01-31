@@ -17,8 +17,10 @@ class Transfer
   end 
   
   def execute_transaction
-    if sender.balance >= amount 
-      sender.deposit(-amount)
+    if @status == "complete" || @status == "rejected"
+      "Transaction has already been executed."
+    elsif sender.balance >= amount && @status == "pending"
+      sender.deposit(-amount) 
       receiver.deposit(amount)
       @status = "complete"
     else 
