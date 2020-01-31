@@ -30,9 +30,10 @@ class Transfer
   end 
     
     def reverse_transfer
-      if @status = "reversed"
+      if @status == "reversed"
+        "This transaction has already beem reversed."
         
-      elsif @status = "complete"
+      elsif @status == "complete"
         sender.deposit(amount)
         receiver.deposit(-amount)
         @status = "reversed"
