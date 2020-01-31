@@ -17,5 +17,14 @@ class Transfer
   end 
   
   def execute_transaction
-    sender.amount
+    if sender.balance >= amount 
+      sender.deposit(-amount)
+      receiver.deposit(amount)
+      @status = "complete"
+    else 
+      @status = "rejected"
+    end 
+    
+    def reverse_transfer
+    end 
 end
