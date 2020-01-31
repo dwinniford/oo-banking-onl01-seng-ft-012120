@@ -23,8 +23,9 @@ class Transfer
       sender.deposit(-amount) 
       receiver.deposit(amount)
       @status = "complete"
-    else 
+    elsif sender.balance <= amount && @status == "pending"
       @status = "rejected"
+      
     end 
   end 
     
